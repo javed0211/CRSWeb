@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "name": "Digital",
+      "reports": [
+        "Digital Report 1",
+        "Digital Report 2",
+        "Digital Report 3"
+      ]
+    },
+    {
+      "name": "Integrations",
+      "reports": [
+        "Integration Report 1",
+        "Integration Report 2"
+      ]
+    },
+    {
+      "name": "CRM",
+      "reports": [
+        "CRM Report 1",
+        "CRM Report 2",
+        "CRM Report 3",
+        "CRM Report 4"
+      ]
+    }
+  ]
+}

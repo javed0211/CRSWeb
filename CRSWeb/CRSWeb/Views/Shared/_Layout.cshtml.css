@@ -1,0 +1,20 @@
+﻿/* Centered Logo and Title */
+.logo {
+    display: block;
+    margin: 0 auto;
+}
+
+.title {
+    text-align: center;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 200px;
+    background-color: #f4f4f4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 20px;
+}
