@@ -134,14 +134,30 @@
                 }
 
                 function showReportTabs(reports) {
-                    reportTabsContainer.innerHTML = '';
-                    reports.forEach(report => {
-                        const reportTab = document.createElement('a');
-                        reportTab.href = `#${report}`;
-                        reportTab.textContent = report;
-                        reportTabsContainer.appendChild(reportTab);
-                    });
-                }
+                reportTabsContainer.innerHTML = ''; // Clear existing content
+            
+                // Create a table element
+                const table = document.createElement('table');
+                table.classList.add('report-table');
+            
+                // Add table headers
+                const thead = table.createTHead();
+                const headerRow = thead.insertRow();
+                const headerName = headerRow.insertCell();
+                headerName.textContent = 'Report Name'; // Add additional headers if needed
+            
+                // Add table body and populate it with reports
+                const tbody = table.createTBody();
+                reports.forEach(report => {
+                    const row = tbody.insertRow();
+                    const cellName = row.insertCell();
+                    cellName.textContent = report; // Add additional data cells if needed
+                });
+            
+                // Append the table to the container
+                reportTabsContainer.appendChild(table);
+            }
+
 
                 generateTowerTabs();
             </script>

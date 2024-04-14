@@ -4,16 +4,16 @@ using System.Diagnostics;
 
 namespace CRSWeb.Controllers
 {
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public AdminController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Admin()
         {
             // Define the sidebar options for the home page
             var sidebarOptions = new List<string> { "Reports", "Release Data" };
