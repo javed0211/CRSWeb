@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporting Page</title>
+    <link href="@Url.Content("~/css/style.css")" rel="stylesheet" />
+    <!-- Add any necessary CSS or external libraries here -->
+    <style>
+        .active {
+            font-weight: bold;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <main class="main">
+        <div class="responsive-wrapper">
+            <div class="main-header">
+                <h1>Centralised Reportin Sytem</h1>
+                <p>Welcome to our centralized reporting system, your comprehensive solution for accessing detailed reports on Automation, Test Insights, and KPIs. Our platform seamlessly extracts data from Azure DevOps and test execution logs, offering a holistic view of your project's performance. Whether you're seeking in-depth analysis of automated testing processes or actionable insights to drive decision-making, our system provides the clarity and granularity you need</p>
+            </div>
+            <div class="content-main">
+                <div class="card-grid">
+                    <article class="card">
+                        <div class="card-header">
+                            <div>
+                                <img src="../images/Digital.png" />
+                                <h3>Digital Tower</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">                      
+                            <div class="details">
+                                <a href="#">Last Execution Report</a>
+                                <p>Total TestCases: 120</p>
+                                <!-- Other content goes here -->
+                                <p>Manual Vs Automated: 70%</p>
+                                <p>Automation Stability: 95%</p>
+                            </div>
+                           
+                                <div class="donut-chart" data-percentage="70"></div>
+                           
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    document.querySelectorAll('.donut-chart').forEach(function (chart) {
+                                        let percentage = chart.getAttribute('data-percentage');
+                                        chart.style.setProperty('--percentage', percentage + '%');
+                                    });
+                                });
+                            </script>
+                            
+                        </div>
+                        <div class="card-footer">
+                            <a href="#">View Digital Page</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-header">
+                            <div>
+                                <img src="../images/Dynamics365-logo.png" />
+                                <h3>CRM Tower</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <a href="#">Last Execution Report</a>
+                            <p>Total TestCases: 120</p>
+                            <div class="percentage-bar"><span style="width: 70%;">Manual Vs Automated</span></div>
+                            <p>Automation Stability: 95%</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#">View CRM page</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-header">
+                            <div>
+                                <img src="../images/API.png" />
+                                <h3>Integration Tower</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <a href="#">Last Execution Report</a>
+                            <p>Total TestCases: 120</p>
+                            <div class="percentage-bar"><span style="width: 70%;">Manual Vs Automated</span></div>
+                            <p>Automation Stability: 95%</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#">View integration page</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-header">
+                            <div>
+                                <img src="../images/SWIFT.png" />
+                                <h3>SWIFT Tower</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <a href="#">Last Execution Report</a>
+                            <p>Total TestCases: 120</p>
+                            <div class="percentage-bar"><span style="width: 70%;">Manual Vs Automated</span></div>
+                            <p>Automation Stability: 95%</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#">View SWIFT page</a>
+                        </div>
+                    </article>
+                </div>   
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html>

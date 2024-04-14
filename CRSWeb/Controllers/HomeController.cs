@@ -16,24 +16,24 @@ namespace CRSWeb.Controllers
         public IActionResult Index()
         {
             // Define the sidebar options for the home page
-            var sidebarOptions = new List<string> { "Reports", "Release Data" };
-            ViewBag.SidebarOptions = sidebarOptions;
+            //var sidebarOptions = new List<string> { "Reports", "Release Data" };
+            //ViewBag.SidebarOptions = sidebarOptions;
 
-            // Define the reports
-            var reports = new List<Report>
-            {
-                new Report { Name = "Automation Reports", Url = "automationReportsUrl" },
-                new Report { Name = "KPI Reports", Url = "kpiReportsUrl" }
-            };
+            //// Define the reports
+            //var reports = new List<Report>
+            //{
+            //    new Report { Name = "Automation Reports", Url = "automationReportsUrl" },
+            //    new Report { Name = "KPI Reports", Url = "kpiReportsUrl" }
+            //};
 
-            var page = new Page
-            {
-                Title = "Centralised Reporting System",
-                Reports = reports,
-                ReleaseDataUrl = "releaseDataUrl"
-            };
+            //var page = new Page
+            //{
+            //    Title = "Centralised Reporting System",
+            //    Reports = reports,
+            //    ReleaseDataUrl = "releaseDataUrl"
+            //};
 
-            return View(page);
+            return View();
         }
 
         public IActionResult Privacy()
@@ -41,6 +41,7 @@ namespace CRSWeb.Controllers
             return View();
         }
 		
+
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
