@@ -6,14 +6,14 @@ namespace CRSWeb.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<AdminController> _logger;
 
-        public AdminController(ILogger<HomeController> logger)
+        public AdminController(ILogger<AdminController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Admin()
+        public IActionResult Index()
         {
             return View();
         }

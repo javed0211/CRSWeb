@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporting Page</title>
+    <link href="@Url.Content("~/css/style.css")" rel="stylesheet" />
+
+    <!-- Add any necessary CSS or external libraries here -->
+    <style>
+        .active {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <main class="main">
+        <div class="responsive-wrapper">
+            <div class="main-header">
+                <h1>Reporting</h1>
+            </div>
+            <div class="horizontal-tabs" id="towerTabs">
+                <!-- Tower tabs will be generated dynamically -->
+            </div>
+            <div class="content-header" id="contentHeader">
+                <div class="content-header-intro">
+                    <h2>Select tower tab to see projects</h2>
+                    <p>Please choose a tower to see available projects.</p>
+                </div>
+            </div>
+            <div class="content">
+                <div class="project-list">
+                    <div class="vertical-tabs" id="projectTabs">
+                        <!-- Project tabs will be generated dynamically -->
+                    </div>
+                </div>
+                <div class="project-details" id="subFoldersContainer">
+                    <!-- Subfolder details will be displayed here in a table -->
+                </div>
+            </div>
+            <div id="pagination">
+                <!-- Pagination buttons will be added here -->
+            </div>
+            @* <div class="content">
+                <div class="content-panel">
+                    <div class="vertical-tabs" id="reportTabs">
+                        <!-- Report tabs will be generated dynamically -->
+                        
+                    </div>
+                </div>
+            </div> *@
+
+
+            <script>
+                let currentPage = 1;
+                const reportsPerPage = 20;
+                let currentSubFolders = []; // To keep track of the current list of subfolders
+                let currentTowerName = ''; // To keep track of the currently selected tower
+
+                async function fetchData() {
+                    try {
+                        const response = await fetch('/api/towers');
+                        const towers = await response.json();
+                        generateTowerTabs(towers);
+                    } catch (error) {
+                        console.error('Error fetching towers:', error);
+                    }
+                }
+
+                function generateTowerTabs(towers) {
+                    const towerTabsContainer = document.getElementById('towerTabs');
+                    towerTabsContainer.innerHTML = '';
+                    towers.forEach(tower => {
+                        const towerTab = document.createElement('a');
+                        towerTab.href = `#${tower.toLowerCase()}`;
+                        towerTab.textContent = tower;
+                        towerTab.className = 'tower-tab';
+                        towerTab.onclick = async function (event) {
+                            event.preventDefault();
+                            currentTowerName = tower; // Set the current tower name
+                            try {
+                                const response = await fetch(`/api/towers/${tower}`);
+                                const projects = await response.json();
+                                showProjectTabs(projects, tower);
+                            } catch (error) {
+                                console.error('Error fetching projects:', error);
+                            }
+                        };
+                        towerTabsContainer.appendChild(towerTab);
+                    });
+                }
+
+                function showProjectTabs(projects, towerName) {
+                    const projectTabsContainer = document.getElementById('projectTabs');
+                    projectTabsContainer.innerHTML = '';
+                    projects.forEach((project, index) => {
+                        const projectTab = document.createElement('a');
+                        projectTab.href = `#${project.toLowerCase()}`;
+                        projectTab.textContent = project;
+                        projectTab.className = 'project-tab';
+                        projectTab.onclick = async function (event) {
+                            event.preventDefault();
+                            try {
+                                const response = await fetch(`/api/towers/${towerName}/${project}`);
+                                currentSubFolders = await response.json(); // Update the current subfolders
+                                displaySubFolders(currentSubFolders, project);
+                            } catch (error) {
+                                console.error('Error fetching subfolders:', error);
+                            }
+                        };
+                        if (index === 0) projectTab.className += ' active'; // Automatically click the first tab
+                        projectTabsContainer.appendChild(projectTab);
+                    });
+                    if (projects.length > 0) {
+                        projectTabsContainer.firstChild.click(); // Automatically click the first project tab
+                    }
+                    updateContentHeader(towerName);
+                }
+
+                function displaySubFolders(subFolders, projectName) {
+                    const detailsContainer = document.getElementById('subFoldersContainer');
+                    detailsContainer.innerHTML = ''; // Clear previous content
+
+                    const table = document.createElement('table');
+                    table.className = 'table';
+                    createTableHeader(table);
+
+                    const tbody = document.createElement('tbody');
+                    table.appendChild(tbody);
+                    detailsContainer.appendChild(table);
+
+                    // Pagination setup
+                    setupPagination(subFolders.length, projectName, subFolders);
+                }
+
+                function createTableHeader(table) {
+                    const thead = table.createTHead();
+                    const headerRow = thead.insertRow();
+                    const headers = ['Sr. Num', 'Allure Report Name', 'Link'];
+                    headers.forEach(headerText => {
+                        const headerCell = document.createElement('th');
+                        headerCell.textContent = headerText;
+                        headerRow.appendChild(headerCell);
+                    });
+                }
+
+                function setupPagination(totalItems, projectName, subFolders) {
+                    const paginationContainer = document.getElementById('pagination');
+                    paginationContainer.innerHTML = ''; // Clear existing pagination buttons
+
+                    const pageCount = Math.ceil(totalItems / reportsPerPage);
+                    for (let i = 1; i <= pageCount; i++) {
+                        const pageButton = document.createElement('button');
+                        pageButton.textContent = i;
+                        pageButton.addEventListener('click', () => {
+                            paginateSubFolders(i, projectName, subFolders);
+                        });
+                        paginationContainer.appendChild(pageButton);
+                    }
+
+                    // Load the first page by default
+                    paginateSubFolders(1, projectName, subFolders);
+                }
+
+                function paginateSubFolders(page, projectName, subFolders) {
+                    const startIndex = (page - 1) * reportsPerPage;
+                    const endIndex = startIndex + reportsPerPage;
+                    const paginatedItems = subFolders.slice(startIndex, endIndex);
+
+                    const tbody = document.querySelector('.table tbody');
+                    tbody.innerHTML = ''; // Clear current table body
+
+                    // Populate table body with paginated items
+                    paginatedItems.forEach((folder, index) => {
+                        const row = tbody.insertRow();
+                        const srCell = row.insertCell();
+                        srCell.textContent = startIndex + index + 1;
+
+                        const nameCell = row.insertCell();
+                        nameCell.textContent = folder;
+
+                        const linkCell = row.insertCell();
+                        const link = document.createElement('a');
+                        link.textContent = 'View Report';
+                        link.href = `/vCRS/${currentTowerName}/${projectName}/${folder}/AllureReport/index.html`;
+                        link.setAttribute('target', '_blank');
+                        linkCell.appendChild(link);
+                    });
+                }
+
+                function updateContentHeader(towerName) {
+                    const contentHeader = document.getElementById('contentHeader');
+                    contentHeader.querySelector('h2').textContent = `Select a project in the ${towerName} tower`;
+                    contentHeader.querySelector('p').textContent = 'Please choose a project to see available subfolders.';
+                }
+
+                // Initial fetch to populate the towers
+                fetchData();
+
+            </script>
+        </div>
+    </main>
+</body>
+</html>

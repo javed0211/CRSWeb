@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace CRSWeb.Controllers
 {
-    public class HomeController : Controller
+    public class DashboardController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<DashboardController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public DashboardController(ILogger<DashboardController> logger)
         {
             _logger = logger;
         }
@@ -22,7 +22,6 @@ namespace CRSWeb.Controllers
         {
             return View();
         }
-		
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

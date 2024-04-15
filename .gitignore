@@ -8,3 +8,5 @@
 /.vs
 /CRSWeb/bin/Debug/net8.0
 /CRSWeb/obj
+/CRSWeb/.config
+/CRSWeb/bin/Release/net8.0
