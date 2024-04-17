@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\NewReportingPortal</_PublishTargetUrl>
+    <History>True|2024-04-17T10:27:30.4518527Z;True|2024-04-16T11:52:45.4762613+00:00;True|2024-04-16T09:43:48.7825629+00:00;True|2024-04-16T09:38:55.3659463+00:00;True|2024-04-15T09:10:12.5998990+00:00;True|2024-04-15T05:55:50.2076344+00:00;True|2024-04-15T05:50:33.0776974+00:00;True|2024-04-15T05:37:14.6289469+00:00;True|2024-04-15T05:34:26.1236254+00:00;True|2024-04-15T05:04:31.0701204+00:00;True|2024-04-15T05:01:53.0424607+00:00;True|2024-04-15T05:00:10.7605064+00:00;True|2024-04-15T04:54:24.0195738+00:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

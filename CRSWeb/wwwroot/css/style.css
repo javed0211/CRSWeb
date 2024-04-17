@@ -21,8 +21,8 @@ body {
 }
 
 img {
-    display: block;
-    max-width: 10%;
+    display: flex;
+    max-width: 15%;
 }
 
 :focus {
@@ -36,19 +36,21 @@ img {
     margin-right: auto;
 }
 
+
 .header {
     display: flex;
-    justify-content: space-between; /* This spaces out the logo and navigation links */
     align-items: center;
+    justify-content: flex-start; /* Aligns items to the left */
+    padding: 0 120px; /* Adjust padding as needed */
+    background-color: transparent;
+    border-bottom: 1px solid var(--c-border-primary); /* Assuming you still want the border */
     height: 80px;
-/*    border-bottom: 1px solid var(--c-border-primary);
-*/    background-color: var(--c-background-primary);
-    padding: 0 120px; /* Add padding on both sides of the header */
 }
 
 .header-content {
     display: flex;
     align-items: center;
+
 }
 
     .header-content > a {
@@ -67,10 +69,8 @@ img {
 
 .header-logo {
     display: flex;
-    justify-content: center; /* Centers content horizontally */
     align-items: center; /* Centers content vertically */
     flex-grow: 1;
-    text-align: center;
 }
 
     .header-logo a {
@@ -103,7 +103,6 @@ img {
 .header-navigation {
     display: flex;
     flex-grow: 1;
-    justify-content: flex-end; /* Aligns content to the end (right) */
     align-items: center;
     justify-content: space-between;
 }
@@ -113,28 +112,29 @@ img {
         display: none;
     }
 }
+
 .header-navigation-links {
     display: flex;
     gap: 15px; /* Space between navigation items */
 }
 
-.header-navigation-links a {
-    text-decoration: none;
-    color: var(--c-text-action);
-    font-weight: 500;
-    transition: 0.15s ease;
-    margin: 0;
-    padding: 0;
-}
-
-    .header-navigation-links a + * {
-        margin-left: 1.5rem;
+    .header-navigation-links a {
+        text-decoration: none;
+        color: var(--c-text-action);
+        font-weight: 500;
+        transition: 0.15s ease;
+        margin: 0;
+        padding: 0;
     }
 
-    .header-navigation-links a:hover,
-    .header-navigation-links a:focus {
-        color: var(--c-accent-primary);
-    }
+        .header-navigation-links a + * {
+            margin-left: 1.5rem;
+        }
+
+        .header-navigation-links a:hover,
+        .header-navigation-links a:focus {
+            color: var(--c-accent-primary);
+        }
 
 .header-navigation-actions .avatar {
     margin-left: 0.75rem;
@@ -163,7 +163,7 @@ img {
     color: var(--c-text-action);
     font-size: 0.875rem;
     transition: 0.15s ease;
-    background-color: var(--c-background-primary);
+    background-color: transparent;
 }
 
     .button i {
@@ -434,7 +434,7 @@ img {
 }
 
 .card {
-    background-color: var(--c-background-primary);
+    background-color: transparent;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.05), 0 5px 15px 0 rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     overflow: hidden;
@@ -494,7 +494,7 @@ img {
         top: 3px;
         height: 18px;
         width: 18px;
-        background-color: var(--c-background-primary);
+        background-color: transparent;
         border-radius: 50%;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
         transition: 0.15s ease;
@@ -609,7 +609,7 @@ html::-webkit-scrollbar-thumb {
 .tower-box {
     flex: 0 0 calc(25% - 40px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: var(--c-background-primary);
+    background-color: transparent;
     border: 1px solid var(--c-border-primary);
     padding: 20px;
     margin-bottom: 20px;
@@ -634,12 +634,11 @@ html::-webkit-scrollbar-thumb {
     border-collapse: collapse;
     margin-top: 1em;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: var(--c-background-primary);
+    background-color: transparent;
     border: 1px solid var(--c-border-primary);
     text-align: left;
     display: block;
     width: 100%;
-
 }
 
     .table th, .table td {
@@ -678,6 +677,7 @@ html::-webkit-scrollbar-thumb {
     /*width: 20%;*/
     min-width: 200px;
 }
+
 .project-details, .project-list, .content {
     padding: 0;
     margin: 0;
